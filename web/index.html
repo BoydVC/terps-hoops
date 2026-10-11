@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Terps Hoops Command</title>
+<meta name="theme-color" content="#E21833">
+<meta name="description" content="Maryland Men’s Basketball command center for Boyd — Tipoff HQ, Court Board, Big Ten Desk, Lore Wall, Fan Notes. Offline.">
+<style>/*__CSS__*/</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div class="vignette" aria-hidden="true"></div>
+<div class="flag-band" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="brand">
+    <span class="crest" aria-hidden="true">
+      <svg viewBox="0 0 64 64" width="52" height="52">
+        <defs>
+          <linearGradient id="goldG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FFD200"/><stop offset="1" stop-color="#c9a400"/>
+          </linearGradient>
+        </defs>
+        <circle cx="32" cy="32" r="30" fill="#111" stroke="url(#goldG)" stroke-width="3"/>
+        <circle cx="32" cy="32" r="24" fill="#E21833"/>
+        <text x="32" y="28" text-anchor="middle" font-size="11" font-weight="800" fill="#FFD200" font-family="system-ui,sans-serif" letter-spacing="1">MD</text>
+        <text x="32" y="42" text-anchor="middle" font-size="9" font-weight="700" fill="#fff" font-family="system-ui,sans-serif">HOOPS</text>
+      </svg>
+    </span>
+    <div>
+      <h1>Terps Hoops Command</h1>
+      <p class="sub">Maryland Men’s Basketball · XFINITY Center · Big Ten</p>
+    </div>
+  </div>
+  <div class="topmeta">
+    <span class="pill gold">Fear the Turtle</span>
+    <span class="pill soft">offline · private</span>
+    <button id="btnWall" class="ghost" title="Wall display mode">🖥 Wall</button>
+    <button id="btnHelp" class="ghost" title="About">❓</button>
+  </div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Hoops screens">
+  <button role="tab" class="tab on" data-tab="tipoff" aria-selected="true">🏀 Tipoff HQ</button>
+  <button role="tab" class="tab" data-tab="court" aria-selected="false">📐 Court Board</button>
+  <button role="tab" class="tab" data-tab="b1g" aria-selected="false">🏟 Big Ten Desk</button>
+  <button role="tab" class="tab" data-tab="lore" aria-selected="false">🏆 Lore Wall</button>
+  <button role="tab" class="tab" data-tab="notes" aria-selected="false">📝 Fan Notes</button>
+</nav>
+
+<main class="stage">
+  <!-- TIPOFF HQ -->
+  <section id="panel-tipoff" class="panel on" role="tabpanel">
+    <div class="hero-court">
+      <div class="xfinity-banner">XFINITY CENTER · COLLEGE PARK</div>
+      <h2 class="season-hero">Maryland Men’s Basketball</h2>
+      <p class="season-tag">Terrapins · Big Ten · Fear the Turtle</p>
+      <div class="court-lines" aria-hidden="true">
+        <svg class="half-svg" viewBox="0 0 400 220" preserveAspectRatio="xMidYMid meet">
+          <rect x="8" y="8" width="384" height="204" fill="none" stroke="#FFD200" stroke-width="2" opacity=".55"/>
+          <line x1="200" y1="8" x2="200" y2="212" stroke="#FFD200" stroke-width="1.5" opacity=".4"/>
+          <circle cx="200" cy="110" r="36" fill="none" stroke="#FFD200" stroke-width="1.5" opacity=".5"/>
+          <path d="M 80 8 L 80 70 Q 80 130 200 130 Q 320 130 320 70 L 320 8" fill="none" stroke="#FFD200" stroke-width="1.5" opacity=".45"/>
+          <rect x="150" y="8" width="100" height="48" fill="none" stroke="#FFD200" stroke-width="1.5" opacity=".5"/>
+          <circle cx="200" cy="56" r="6" fill="#E21833" stroke="#FFD200" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="hero-stats">
+        <article class="stat-card">
+          <span class="stat-label">Home floor</span>
+          <span class="stat-val">XFINITY Center</span>
+          <span class="stat-note">College Park, MD · opened 2002 as Comcast Center</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Conference</span>
+          <span class="stat-val">Big Ten</span>
+          <span class="stat-note">Joined 2014 · ACC era rivals still loom in lore</span>
+        </article>
+        <article class="stat-card">
+          <span class="stat-label">Program peak</span>
+          <span class="stat-val">2002 Champs</span>
+          <span class="stat-note">NCAA title · Juan Dixon Final Four MOP</span>
+        </article>
+      </div>
+      <div class="quick-row">
+        <button class="cta" data-goto="court">Open Court Board →</button>
+        <button class="cta ghost-cta" data-goto="lore">Walk the Lore Wall →</button>
+      </div>
+      <p class="disclaimer">Fan command center for Boyd (UMD alum). No live box scores, rankings, or injury reports — schedule/roster cards below are labelled <b>EXAMPLE</b>.</p>
+    </div>
+    <div class="example-strip">
+      <h3>EXAMPLE tipoff slate <span class="ex-tag">EXAMPLE</span></h3>
+      <p class="note">Placeholder cards for layout only — not a real 2026–27 schedule.</p>
+      <div class="slate-grid" id="tipoffSlate"></div>
+    </div>
+  </section>
+
+  <!-- COURT BOARD -->
+  <section id="panel-court" class="panel" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Court Board <span class="ex-tag">EXAMPLE lineup</span></h2>
+      <p class="note">Interactive half-court. Drag dots 1–5, draw pick-and-roll arrows. Drawings save to localStorage.</p>
+    </div>
+    <div class="court-layout">
+      <div class="court-tools" role="toolbar" aria-label="Court tools">
+        <button class="tool on" data-tool="move" title="Move players">✋ Move</button>
+        <button class="tool" data-tool="draw" title="Draw arrow">↗ Draw</button>
+        <button class="tool" data-tool="erase" title="Erase last">⌫ Erase</button>
+        <button class="act" id="btnClearDraw" title="Clear all drawings">✖ Clear</button>
+        <button class="act" id="btnResetLineup" title="Reset EXAMPLE lineup">⟲ Reset</button>
+        <button class="act" id="btnPnR" title="Stamp pick-and-roll template">PnR ★</button>
+      </div>
+      <div class="court-wrap" id="courtWrap">
+        <svg id="courtSvg" viewBox="0 0 500 480" aria-label="Half-court tactics board">
+          <defs>
+            <marker id="arrowHead" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#FFD200"/>
+            </marker>
+            <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a2210"/><stop offset="1" stop-color="#2a180c"/>
+            </linearGradient>
+          </defs>
+          <rect width="500" height="480" fill="url(#wood)" rx="8"/>
+          <rect x="20" y="20" width="460" height="440" fill="none" stroke="#FFD200" stroke-width="2.5" opacity=".7"/>
+          <!-- key -->
+          <rect x="175" y="20" width="150" height="190" fill="none" stroke="#FFD200" stroke-width="2" opacity=".65"/>
+          <path d="M175 210 A75 75 0 0 0 325 210" fill="none" stroke="#FFD200" stroke-width="2" opacity=".65"/>
+          <path d="M175 210 A75 75 0 0 1 325 210" fill="none" stroke="#FFD200" stroke-width="1.5" stroke-dasharray="6 6" opacity=".35"/>
+          <!-- rim / backboard -->
+          <line x1="210" y1="36" x2="290" y2="36" stroke="#fff" stroke-width="4"/>
+          <circle cx="250" cy="58" r="14" fill="none" stroke="#E21833" stroke-width="3"/>
+          <line x1="250" y1="36" x2="250" y2="44" stroke="#fff" stroke-width="2"/>
+          <!-- three-point arc (approx) -->
+          <path d="M55 20 L55 110 Q55 340 250 340 Q445 340 445 110 L445 20" fill="none" stroke="#FFD200" stroke-width="2" opacity=".55"/>
+          <!-- midcourt hash hint -->
+          <line x1="20" y1="460" x2="480" y2="460" stroke="#FFD200" stroke-width="2" opacity=".4"/>
+          <g id="drawLayer"></g>
+          <g id="playerLayer"></g>
+        </svg>
+        <div class="court-badge">EXAMPLE · not a real lineup</div>
+      </div>
+      <aside class="court-side">
+        <div class="card">
+          <h3>EXAMPLE lineup</h3>
+          <ul class="lineup" id="lineupList"></ul>
+          <p class="note">Numbers only — no real player names or jersey claims.</p>
+        </div>
+        <div class="card">
+          <h3>Play library</h3>
+          <button class="chip-btn" id="btnHorn">Horns entry</button>
+          <button class="chip-btn" id="btnFloppy">Floppy cut</button>
+          <p class="note">Stamps EXAMPLE arrow sets. Edit freely after.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- BIG TEN DESK -->
+  <section id="panel-b1g" class="panel" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Big Ten Desk</h2>
+      <p class="note">Conference framing + rivalry lore. Slate cards are <b>EXAMPLE</b> — not real results or odds.</p>
+    </div>
+    <div class="b1g-grid">
+      <div class="card span2">
+        <h3>EXAMPLE conference slate <span class="ex-tag">EXAMPLE</span></h3>
+        <div class="slate-grid" id="b1gSlate"></div>
+      </div>
+      <div class="card rivalry">
+        <h3>Rivalry spotlight</h3>
+        <div class="rival-tabs" id="rivalTabs" role="tablist"></div>
+        <article id="rivalBody" class="rival-body"></article>
+      </div>
+      <div class="card">
+        <h3>Big Ten map (fan)</h3>
+        <p>Maryland sits on the eastern edge of the conference footprint — road trips to the Midwest are part of the modern Terps identity since the 2014 move from the ACC.</p>
+        <ul class="bullets">
+          <li>Home: XFINITY Center, College Park</li>
+          <li>Conference: Big Ten (joined 2014)</li>
+          <li>Colors: Maryland red &amp; gold</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- LORE WALL -->
+  <section id="panel-lore" class="panel" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Lore Wall</h2>
+      <p class="note">Verified program history only. Contested or unclear claims are skipped. Sources listed in README.</p>
+    </div>
+    <div class="lore-grid" id="loreGrid"></div>
+  </section>
+
+  <!-- FAN NOTES -->
+  <section id="panel-notes" class="panel" role="tabpanel" hidden>
+    <div class="panel-head">
+      <h2>Fan Notes</h2>
+      <p class="note">Private notepad + watch-party checklist (localStorage). Official links open in a new tab.</p>
+    </div>
+    <div class="notes-layout">
+      <div class="card">
+        <h3>Notepad</h3>
+        <textarea id="fanNotes" rows="10" placeholder="Lineup thoughts, watch-party snacks, radio call letters…"></textarea>
+        <div class="row">
+          <button class="cta" id="btnSaveNotes">Save notes</button>
+          <button class="ghost-cta" id="btnClearNotes">Clear</button>
+          <span class="save-status" id="notesStatus"></span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Watch-party checklist</h3>
+        <ul class="checklist" id="watchList"></ul>
+        <button class="ghost-cta" id="btnResetCheck">Reset checklist</button>
+      </div>
+      <div class="card">
+        <h3>Official links</h3>
+        <ul class="link-list">
+          <li><a href="https://umterps.com/sports/mens-basketball" target="_blank" rel="noopener">umterps.com — Men’s Basketball</a></li>
+          <li><a href="https://umterps.com" target="_blank" rel="noopener">umterps.com — Athletics home</a></li>
+          <li><a href="https://bigten.org" target="_blank" rel="noopener">bigten.org</a></li>
+          <li><a href="https://www.ncaa.com/sports/basketball-men/d1" target="_blank" rel="noopener">NCAA.com — Men’s D1 basketball</a></li>
+        </ul>
+        <p class="note">External sites — not affiliated with this offline app.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Terps Hoops Command · port 4288 · 127.0.0.1 only</span>
+  <span>Not affiliated with the University of Maryland or the Big Ten</span>
+</footer>
+
+<dialog id="helpDlg">
+  <form method="dialog" class="help-box">
+    <h2>About Terps Hoops Command</h2>
+    <p>Offline fan HQ for Boyd (University of Maryland alum). Maryland red / gold / black chrome, XFINITY Center vibe, Big Ten framing.</p>
+    <ul>
+      <li><b>Never invents</b> box scores, rankings, or injury reports.</li>
+      <li>Schedule &amp; lineup cards are clearly labelled <b>EXAMPLE</b>.</li>
+      <li>Lore Wall sticks to well-known verified program history.</li>
+      <li>Court drawings &amp; notes stay in your browser (localStorage).</li>
+    </ul>
+    <button class="cta" value="ok">Got it</button>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" hidden></div>
+<script>/*__APP__*/</script>
+</body>
+</html>
