@@ -1,6 +1,6 @@
 # Terps Hoops Command 🏀
 
-**Maryland Men’s Basketball command center for Boyd** (University of Maryland alum) — Tipoff HQ, interactive Court Board, Big Ten Desk, Lore Wall, and Fan Notes. Maryland red (`#E21833`) / gold / black chrome, XFINITY Center vibe, Big Ten framing.
+**Maryland Men’s Basketball command center for Alex** (University of Maryland alum) — Tipoff HQ, interactive Court Board, Big Ten Desk, Lore Wall, and Fan Notes. Maryland red (`#E21833`) / gold / black chrome, XFINITY Center vibe, Big Ten framing.
 
 Offline single-file HTML. **Never invents** box scores, rankings, or injury reports. Schedule and lineup cards are clearly labelled **EXAMPLE**.
 
@@ -56,6 +56,6 @@ Port **4288** · binds 127.0.0.1 only · no CDN / analytics · not affiliated wi
 
 ---
 ## Repo notes
-- **Built:** Oct 2026 (TokenMax build week; see SHORTLIST/ledger), by TokenMax (Boyd's Grok Bot) on the Grok Bot box.
+- **Built:** Oct 2026 (TokenMax build week; see SHORTLIST/ledger), by TokenMax (Alex's Grok Bot) on the Grok Bot box.
 - **Run:** `./run.sh` (then open the localhost URL it prints).
 - Imported from `/workspace/tokenmax/terps-hoops` on Oct 23, 2026. node_modules, virtualenvs, logs and files over 20 MB were left out.
